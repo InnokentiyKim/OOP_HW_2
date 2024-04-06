@@ -15,10 +15,20 @@ def get_recipes_lists(all_data: list) -> list:
             recipe_ = []
     return all_recipes
 
+
 def get_components(component: str) -> list:
     true_component = component.split(' | ')
     true_component[1] = int(true_component[1])
     return true_component
+
+
+def get_shop_list_by_dishes(dishes: list, person_count: int) -> dict:
+    shop_list = {}
+    for dish in dishes:
+        for position in cook_book[dish]:
+            shop_lists_ingredient = {'measure': position['measure'], 'quantity': position['quantity'] * person_count}
+            shop_list[position['ingredient_name']] = shop_lists_ingredient
+    return shop_list
 
 
 with open('recipes.txt', encoding='UTF-8') as recipes_file:
@@ -35,7 +45,10 @@ for recipe in all_recipes:
         ingredient = dict(zip(ingredients_title, components))
         ingredients_list.append(ingredient)
     cook_book[dish] = ingredients_list
-
-    
+print('cook_book: ', cook_book)
+dishes = ['Запеченный картофель', 'Омлет']
+person_count = 2
+shop_list_for_dishes = get_shop_list_by_dishes(dishes, person_count)
+print('shop list for disher: ', shop_list_for_dishes)
         
 
