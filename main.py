@@ -45,18 +45,17 @@ for recipe in all_recipes:
         ingredient = dict(zip(ingredients_title, components))
         ingredients_list.append(ingredient)
     cook_book[dish] = ingredients_list
-# print('cook_book: ', cook_book)
+print('cook_book: ', cook_book)
 dishes = ['Запеченный картофель', 'Омлет']
 person_count = 2
 shop_list_for_dishes = get_shop_list_by_dishes(dishes, person_count)
-# print('shop list for disher: ', shop_list_for_dishes)
+print('shop list for disher: ', shop_list_for_dishes)
 files_name = ['1.txt', '2.txt', '3.txt']
 files_data = []
 for name in files_name:
     file = open(name, encoding='UTF-8')
     files_data.append(file.readlines())
     file.close()
-# print(files_data)
 files_list = list(zip(files_name, files_data))
 sorted_files_list = sorted(files_list, key=lambda x: len(x[1]))
 with open('union_file', 'w', encoding='UTF-8') as result_file:
